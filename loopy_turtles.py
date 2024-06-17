@@ -122,7 +122,8 @@ def draw_star(
     
     smaller_angle = angle - 72
 
-    for _ in range(5): 
+    for star in range(5): 
+        print_turtle_position(t)
         t.forward(length)
         if initial_rotation_direction == "left":
             t.left(angle)
