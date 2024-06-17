@@ -10,7 +10,6 @@ Rather, call any of these functions from main.py and run that file.
 # import the turtle module, which is included in the regular Python distribution
 import turtle
 
-
 def create_turtle(stroke_color, bg_color):
     """
     Creates a turtle object, and sets the stroke and background colors.
@@ -78,6 +77,23 @@ def draw_square(t, start_x, start_y, length, rotation_direction, fill_color):
     :param rotation_direction: Either 'left' or 'right', indicating the direction the turtle should rotate after it completes each line of the rectangle.
     :param fill_color: The color with which to fill in the area drawn by the turtle.
     """
+    pick_up_and_move_turtle(t, start_x, start_y)
+
+    if fill_color:
+        t.fillcolor(fill_color)
+        t.begin_fill()
+    
+    for square in range(4):
+        print_turtle_position(t)
+        t.forward(length)
+        if rotation_direction == "left":
+            t.left(90)
+        else:
+            t.right(90)
+    
+    if fill_color:
+        t.end_fill()
+
 
 
 def draw_star(
@@ -100,3 +116,20 @@ def draw_star(
     :param initial_rotation_direction: The direction of the first rotation the turtle should make when drawing each point, either 'left' or 'right'.
     :param fill_color: The color with which to fill in the area drawn by the turtle.
     """
+    if fill_color:
+        t.fillcolor(fill_color)
+        t.begin_fill()
+    
+    smaller_angle = angle - 72
+
+    for _ in range(5): 
+        t.forward(length)
+        if initial_rotation_direction == "left":
+            t.left(angle)
+        else:
+            t.right(angle)
+        t.forward(length)
+        t.left(smaller_angle)
+    
+    if fill_color:
+        t.end_fill()
